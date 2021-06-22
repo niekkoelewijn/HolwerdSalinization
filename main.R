@@ -19,6 +19,9 @@ library(shinythemes)
 library(leaflet)
 library(sf)
 
+# Source to required functions
+source("./R/download_data.R")
+
 # Make a data directory
 datdir <- "./data"
 if (!dir.exists(datdir)){
