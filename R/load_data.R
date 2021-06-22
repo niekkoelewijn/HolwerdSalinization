@@ -8,11 +8,11 @@
 source("./R/download_data.R")
 
 # Load the sentinel images 
-url <- list('https://drive.google.com/uc?export=download&id=1P_sfP5CVMkuzrpo7d1RpG8-GbGKcIdT0')
+url <- list('https://drive.google.com/uc?export=download&id=1SBkBw-9BG86fJj9OpvZ8GHNdHioD_0c-')
             
 
 #Download the data from google drive and return them as a raster stack
-s2_images <- list(DownloadData(url[1], 's2_april'))
+s2_images <- list(DownloadData(url[1], 'August2019'))
 #                    DownloadData(url[3], 's2_20170208'),
 #                   DownloadData(url[4], 's2_20171110'),
 #                   DownloadData(url[5], 's2_20171130'),
@@ -31,7 +31,7 @@ s2_images <- list(DownloadData(url[1], 's2_april'))
 
 # Create vector of the file names that can be used for visualization
 # s2_images_names <- list.files('data', pattern=glob2rx('s2*'))
-for (i in 1:length(s2_images)){
-  name <- sapply(strsplit(s2_images_names[i], split='.', fixed=TRUE), function(x) (x[1]))
-  s2_images_names[i] <- name
-}
+#for (i in 1:length(s2_images)){
+#  name <- sapply(strsplit(s2_images_names[i], split='.', fixed=TRUE), function(x) (x[1]))
+#  s2_images_names[i] <- name
+#}

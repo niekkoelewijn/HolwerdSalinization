@@ -23,6 +23,7 @@ library(sf)
 source("./R/download_data.R")
 source("./R/load_data.R")
 source("./R/calculate_NDRE.R")
+source("./R/load_fields.R")
 
 # Make a data directory
 datdir <- "./data"
@@ -36,5 +37,5 @@ if (!dir.exists(outdir)){
 }
 
 # Load the Sentinel data into a raster brick
-April2020 <- brick("./data/April2020.tif")
+August2019 <- brick("./data/August2019.tif")
 
