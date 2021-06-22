@@ -22,6 +22,7 @@ library(sf)
 # Source to required functions
 source("./R/download_data.R")
 source("./R/load_data.R")
+source("./R/calculate_NDRE.R")
 
 # Make a data directory
 datdir <- "./data"
@@ -29,9 +30,10 @@ if (!dir.exists(datdir)){
   dir.create(datdir, showWarnings = FALSE)
 }
 
-# Download MODIS data from drive
-downloadlink <- "https://drive.google.com/uc?export=download&id=1gAUnzkTQxME1eWIgWvgMVmtOajlGRAUW"
-download.file(url = downloadlink, destfile = './data/April2020.tif', method = 'auto')
+outdir <- "./output"
+if (!dir.exists(outdir)){
+  dir.create(datdir, showWarnings = FALSE)
+}
 
 # Load the Sentinel data into a raster brick
 April2020 <- brick("./data/April2020.tif")
