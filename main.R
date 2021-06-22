@@ -15,6 +15,7 @@ if(!"leaflet" %in% rownames(installed.packages())){install.packages("leaflet")}
 
 library(shiny)
 library(raster)
+library(rgdal)
 library(shinythemes)
 library(leaflet)
 library(sf)
