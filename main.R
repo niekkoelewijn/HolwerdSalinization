@@ -12,6 +12,7 @@ if(!"sf" %in% rownames(installed.packages())){install.packages("sf")}
 if(!"shiny" %in% rownames(installed.packages())){install.packages("shiny")}
 if(!"shinythemes" %in% rownames(installed.packages())){install.packages("shinythemes")}
 if(!"leaflet" %in% rownames(installed.packages())){install.packages("leaflet")}
+if(!"exactextractr" %in% rownames(installed.packages())){install.packages("exactextractr")}
 
 library(shiny)
 library(raster)
@@ -19,6 +20,7 @@ library(rgdal)
 library(shinythemes)
 library(leaflet)
 library(sf)
+library(exactextractr)
 
 # Source to required functions
 source("./R/download_data.R")
@@ -37,9 +39,6 @@ if (!dir.exists(outdir)){
   dir.create(outdir, showWarnings = FALSE)
 }
 
-# Load the Sentinel data into a raster brick
-August2019 <- brick("./data/August2019.tif")
-
 # Calculate NDRE of every month
 s2_images_NDRE <- lapply(s2_images, calc_ndre)
 
@@ -47,6 +46,8 @@ s2_images_NDRE <- lapply(s2_images, calc_ndre)
 Corn_plots <- load_fields("./data/Corn_monitoring.kml", s2_images_NDRE[[1]])
 Potato_plots <- load_fields("./data/Potato_monitoring.kml", s2_images_NDRE[[1]])
 
-
+# Add statistics to vector data
+Corn_plots$mean <- exact_extract(s2_images_NDRE[[1]], Corn_plots, 'mean')
+Potato_plots$mean <- exact_extract(s2_images_NDRE[[1]], Potato_plots, 'mean')
 
 
