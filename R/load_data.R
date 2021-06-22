@@ -12,7 +12,7 @@ url <- list('https://drive.google.com/uc?export=download&id=1SBkBw-9BG86fJj9OpvZ
             
 
 #Download the data from google drive and return them as a raster stack
-s2_images <- list(DownloadData(url[1], 'August2019'))
+s2_images <- list(download_data(url[1], 'August2019'))
 #                    DownloadData(url[3], 's2_20170208'),
 #                   DownloadData(url[4], 's2_20171110'),
 #                   DownloadData(url[5], 's2_20171130'),

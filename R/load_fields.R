@@ -12,10 +12,7 @@ load_fields <- function(path, targetRaster){
   
   # Load data and set to correct crs
   fields <- sf::st_read(dsn = path)
-  fields_plots_CRS <- sf::st_transform(train_poly, targetCRS)
-  
-  # create new column and assign value to land classifications
-  fields_plots_CRS$Description[fields_plots_CRS[1:4]] <- 1
+  fields_plots_CRS <- sf::st_transform(fields, targetCRS)
 
   #give plots description "impact" & "validation
   fields_plots_CRS$Description[1:4] <- "impact"
