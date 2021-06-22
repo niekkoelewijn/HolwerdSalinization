@@ -21,6 +21,7 @@ library(sf)
 
 # Source to required functions
 source("./R/download_data.R")
+source("./R/load_data.R")
 
 # Make a data directory
 datdir <- "./data"
