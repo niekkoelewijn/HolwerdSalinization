@@ -7,27 +7,42 @@
 
 source("./R/download_data.R")
 
-# Load the sentinel images 
-url <- list('https://drive.google.com/uc?export=download&id=1SBkBw-9BG86fJj9OpvZ8GHNdHioD_0c-')
+# List the url's to the sentinel images in dropbox
+url <- list('https://www.dropbox.com/s/hp78y0kl6i3lock/s2_march_19_2019.tif?dl=1,',
+            'https://www.dropbox.com/s/vf881oggtojz5o6/s2_march_29_2019.tif?dl=1',
+            'https://www.dropbox.com/s/o3wtej87th7x2ij/s2_april_16_2019.tif?dl=1',
+            'https://www.dropbox.com/s/a2julndougswuon/s2_april_23_2019.tif?dl=1',
+            'https://www.dropbox.com/s/9ljq8x2x104tj43/s2_may_13_2019.tif?dl=1',
+            'https://www.dropbox.com/s/v1ziy8ibpeope23/s2_may_16_2019.tif?dl=1',
+            'https://www.dropbox.com/s/wbz9vqpqjyn0qn1/s2_june_22_2019.tif?dl=1',
+            'https://www.dropbox.com/s/twnk50qkyy79ejy/s2_july_17_2019.tif?dl=1',
+            'https://www.dropbox.com/s/dr79us07nc9ro6n/s2_july_27_2019.tif?dl=1',
+            'https://www.dropbox.com/s/eef12uhime923t6/s2_august_24_2019.tif?dl=1',
+            'https://www.dropbox.com/s/5uvsqvudj499pxb/s2_august_26_2019.tif?dl=1',
+            'https://www.dropbox.com/s/14ymy32i8u4pzzz/s2_september_10_2019.tif?dl=1',
+            'https://www.dropbox.com/s/rqhpxmv68j91hkp/s2_september_13_2019.tif?dl=1',
+            'https://www.dropbox.com/s/w0u66n6l0ezqgu8/s2_october_10_2019.tif?dl=1',
+            'https://www.dropbox.com/s/tyr0o0kwh5xeex2/s2_october_30_2019.tif?dl=1',
+            'https://www.dropbox.com/s/qozjzjg3izd40x1/s2_december_12_2019.tif?dl=1')
             
 
-#Download the data from google drive and return them as a raster stack
-s2_images <- list(download_data(url[1], 'August2019'))
-#                    DownloadData(url[3], 's2_20170208'),
-#                   DownloadData(url[4], 's2_20171110'),
-#                   DownloadData(url[5], 's2_20171130'),
-#                   DownloadData(url[6], 's2_20171230'),
-#                   DownloadData(url[7], 's2_20180129'),
-#                   DownloadData(url[8], 's2_20180228'),
-#                   DownloadData(url[9], 's2_20180320'),
-#                   DownloadData(url[10], 's2_20180628'),
-#                   DownloadData(url[11], 's2_20180916'),
-#                   DownloadData(url[12], 's2_20181210'),
-#                   DownloadData(url[13], 's2_20191115'),
-#                   DownloadData(url[14], 's2_20200203'),
-#                   DownloadData(url[15], 's2_20200508'),
-#                   DownloadData(url[16], 's2_20201020'),
-#                   DownloadData(url[17], 's2_20210118'))
+#Download the data from dropbox and return them as a RasterBrick
+s2_images <- list(download_data(url[1], 's2_march_19_2019'),
+                  download_data(url[2], 's2_march_29_2019'),
+                  download_data(url[3], 's2_april_16_2019'),
+                  download_data(url[4], 's2_april_23_2019'),
+                  download_data(url[5], 's2_may_13_2019'),
+                  download_data(url[6], 's2_may_16_2019'),
+                  download_data(url[7], 's2_june_22_2019'),
+                  download_data(url[8], 's2_july_17_2019'),
+                  download_data(url[9], 's2_july_27_2019'),
+                  download_data(url[10], 's2_august_24_2019'),
+                  download_data(url[11], 's2_august_26_2019'),
+                  download_data(url[12], 's2_september_10_2019'),
+                  download_data(url[13], 's2_september_13_2019'),
+                  download_data(url[14], 's2_october_10_2019'),
+                  download_data(url[15], 's2_october_30_2019'),
+                  download_data(url[16], 's2_december_12_2019'))
 
 # Create vector of the file names that can be used for visualization
 # s2_images_names <- list.files('data', pattern=glob2rx('s2*'))
