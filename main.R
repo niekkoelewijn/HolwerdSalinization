@@ -19,6 +19,7 @@ library(shinythemes)
 library(leaflet)
 library(sf)
 
+
 # Source to required functions
 source("./R/download_data.R")
 source("./R/load_data.R")
