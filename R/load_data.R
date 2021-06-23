@@ -8,7 +8,7 @@
 source("./R/download_data.R")
 
 # List the url's to the sentinel images in dropbox
-url <- list('https://www.dropbox.com/s/hp78y0kl6i3lock/s2_march_19_2019.tif?dl=1,',
+url <- list('https://www.dropbox.com/s/hp78y0kl6i3lock/s2_march_19_2019.tif?dl=1',
             'https://www.dropbox.com/s/vf881oggtojz5o6/s2_march_29_2019.tif?dl=1',
             'https://www.dropbox.com/s/o3wtej87th7x2ij/s2_april_16_2019.tif?dl=1',
             'https://www.dropbox.com/s/a2julndougswuon/s2_april_23_2019.tif?dl=1',
