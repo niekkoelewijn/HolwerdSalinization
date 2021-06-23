@@ -14,8 +14,8 @@ load_fields <- function(path, targetRaster){
   fields <- sf::st_read(dsn = path)
   fields_plots_CRS <- sf::st_transform(fields, targetCRS)
 
-  #give plots description "impact" & "validation
-  fields_plots_CRS$Description[1:4] <- "impact"
+  #give plots description "monitoring" & "validation"
+  fields_plots_CRS$Description[1:4] <- "monitoring"
   fields_plots_CRS$Description[5:8] <- "validation"
   
   return(fields_plots_CRS)

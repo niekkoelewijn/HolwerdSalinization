@@ -23,6 +23,17 @@ library(leaflet)
 library(sf)
 library(exactextractr)
 
+# Make a data directory if it not exists
+datdir <- "./data"
+if (!dir.exists(datdir)){
+  dir.create(datdir, showWarnings = FALSE)
+}
+
+# Make a output directory if it not exists
+outdir <- "./output"
+if (!dir.exists(outdir)){
+  dir.create(outdir, showWarnings = FALSE)
+}
 
 # Source to required functions
 source("./R/download_data.R")
@@ -31,18 +42,6 @@ source("./R/calculate_NDRE.R")
 source("./R/calculate_NDVI.R")
 source("./R/load_fields.R")
 source("./R/mask_clouds.R")
-
-# Make a data directory if it not exists
-datdir <- "./data"
-if (!dir.exists(datdir)){
-  dir.create(datdir, showWarnings = FALSE)
-}
- 
-# Make a output directory if it not exists
-outdir <- "./output"
-if (!dir.exists(outdir)){
-  dir.create(outdir, showWarnings = FALSE)
-}
 
 # Calculate NDRE of every image
 s2_images_NDVI <- lapply(s2_images, calculate_NDVI)
