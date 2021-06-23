@@ -14,7 +14,7 @@ calculate_NDVI <- function(raster){
   
   # Calculates the vi
   NDVI <- (raster_NIR-raster_RED)/(raster_NIR+raster_RED)
-  NDVI[NDRE <= 0] <- NA
+  NDVI[NDVI <= 0] <- NA
   
   # Return output raster
   return(NDVI)
