@@ -24,10 +24,10 @@ library(sf)
 library(exactextractr)
 
 # Make a data directory if it not exists
-datdir <- "./data"
-if (!dir.exists(datdir)){
-  dir.create(datdir, showWarnings = FALSE)
-}
+#datdir <- "./data"
+#if (!dir.exists(datdir)){
+#  dir.create(datdir, showWarnings = FALSE)
+#}
 
 # Make a output directory if it not exists
 outdir <- "./output"
@@ -44,10 +44,13 @@ source("./R/load_fields.R")
 source("./R/mask_clouds.R")
 
 # Calculate NDRE of every image
-s2_images_NDVI <- lapply(s2_images, calculate_NDVI)
+s2_images_cloudfree <- lapply(s2_images, mask_clouds)
 
 # Calculate NDRE of every image
-s2_images_NDRE <- lapply(s2_images, calculate_NDRE)
+s2_images_NDVI <- lapply(s2_images_cloudfree, calculate_NDVI)
+
+# Calculate NDRE of every image
+s2_images_NDRE <- lapply(s2_images_cloudfree, calculate_NDRE)
 
 # Load corn and potato fields vector data into R
 Corn_plots <- load_fields("./data/Corn_monitoring.kml", s2_images_NDRE[[1]])
