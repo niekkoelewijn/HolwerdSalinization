@@ -52,10 +52,6 @@ s2_images_NDVI <- lapply(s2_images_cloudfree, calculate_NDVI)
 # Calculate NDRE of every image
 s2_images_NDRE <- lapply(s2_images_cloudfree, calculate_NDRE)
 
-# Load corn and potato fields vector data into R
-Corn_plots <- load_fields("./data/Corn_monitoring.kml", s2_images_NDRE[[1]])
-Potato_plots <- load_fields("./data/Potato_monitoring.kml", s2_images_NDRE[[1]])
-
 # Add statistics to vector data
 Corn_plots$mean <- exact_extract(s2_images_NDRE[[1]], Corn_plots, 'mean')
 Potato_plots$mean <- exact_extract(s2_images_NDRE[[1]], Potato_plots, 'mean')
