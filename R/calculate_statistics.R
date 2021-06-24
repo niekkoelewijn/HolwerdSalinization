@@ -9,6 +9,7 @@
 calculate_statistics <- function(plots, name, number, VI){
   if(VI == "NDRE"){
     plots[name] <- exact_extract(s2_images_NDRE[[number]], plots, 'mean')
+    cappend()
   }
   if(VI == "NDVI"){
     plots[name] <- exact_extract(s2_images_NDVI[[number]], plots, 'mean')
@@ -34,5 +35,9 @@ for (i in s2_images_names){
 
 # Calculate the mean 
 for (i in 1:length(s2_images_names)){
-  calculate_statistics(plots=Corn_plots_NDVI, name=s2_images_names[i], number=i, VI="NDVI")
+  Corn_plots_NDVI[s2_images_names[i]] <- calculate_statistics(plots=Corn_plots_NDVI,
+                                                              name=s2_images_names[i],
+                                                              number=i,
+                                                              VI="NDVI")
 }
+

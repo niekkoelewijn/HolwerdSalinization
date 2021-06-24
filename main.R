@@ -46,13 +46,14 @@ source("./R/mask_clouds.R")
 # Calculate NDRE of every image
 s2_images_cloudfree <- lapply(s2_images, mask_clouds)
 
-# Calculate NDRE of every image
+# Calculate NDVI of every image
 s2_images_NDVI <- lapply(s2_images_cloudfree, calculate_NDVI)
 
 # Calculate NDRE of every image
 s2_images_NDRE <- lapply(s2_images_cloudfree, calculate_NDRE)
 
-
+# Calculate mean NDRE and NDVI for every plot
+source("./R/calculate_statistics.R")
 
 
 
