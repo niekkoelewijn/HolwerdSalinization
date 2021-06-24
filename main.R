@@ -13,6 +13,7 @@ if(!"shiny" %in% rownames(installed.packages())){install.packages("shiny")}
 if(!"shinythemes" %in% rownames(installed.packages())){install.packages("shinythemes")}
 if(!"leaflet" %in% rownames(installed.packages())){install.packages("leaflet")}
 if(!"exactextractr" %in% rownames(installed.packages())){install.packages("exactextractr")}
+if(!"dplyr" %in% rownames(installed.packages())){install.packages("dplyr")}
 
 #load required packages
 library(shiny)
@@ -22,6 +23,8 @@ library(shinythemes)
 library(leaflet)
 library(sf)
 library(exactextractr)
+library(dplyr)
+
 
 # Make a data directory if it not exists
 #datdir <- "./data"
@@ -46,20 +49,14 @@ source("./R/mask_clouds.R")
 # Calculate NDRE of every image
 s2_images_cloudfree <- lapply(s2_images, mask_clouds)
 
-# Calculate NDRE of every image
+# Calculate NDVI of every image
 s2_images_NDVI <- lapply(s2_images_cloudfree, calculate_NDVI)
 
 # Calculate NDRE of every image
 s2_images_NDRE <- lapply(s2_images_cloudfree, calculate_NDRE)
 
-# Load corn and potato fields vector data into R
-Corn_plots <- load_fields("./data/Corn_monitoring.kml", s2_images_NDRE[[1]])
-Potato_plots <- load_fields("./data/Potato_monitoring.kml", s2_images_NDRE[[1]])
-
-# Add statistics to vector data
-Corn_plots$mean <- exact_extract(s2_images_NDRE[[1]], Corn_plots, 'mean')
-Potato_plots$mean <- exact_extract(s2_images_NDRE[[1]], Potato_plots, 'mean')
-
+# Calculate mean NDRE and NDVI for every plot
+source("./R/calculate_statistics.R")
 
 
 

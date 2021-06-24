@@ -50,3 +50,5 @@ for (i in 1:length(s2_images)){
   name <- sapply(strsplit(s2_images_names[i], split='.', fixed=TRUE), function(x) (x[1]))
   s2_images_names[i] <- name
 }
+
+
