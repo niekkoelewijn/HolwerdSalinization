@@ -15,6 +15,11 @@ calculate_statistics <- function(plots, date, VI){
   }
 }
 
+# Create columns for Corn_plots
 for (i in s2_images_names){
-  
+  Corn_plots[i] <- NA
+}
+
+for (i in 1:length(s2_images_names)){
+  calculate_statistics(Corn_plots, as.factor(s2_images_names[i]), "NDVI")
 }
