@@ -48,19 +48,46 @@ ggplot() +
   theme(plot.title = element_text(hjust = 0.5))
 
 # Create graph to visualize corn NDVI development over time
-ggplot(data = Corn_NDVI_means, aes(x=Date, y=monitoring), group=1) +
-  geom_line()+
-  geom_point()+
-  theme_minimal()
+ggplot() +
+  geom_line(data = Corn_NDVI_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+  geom_line(data = Corn_NDVI_means, aes(Date, validation, color="Validation"), size=1)+
+  scale_color_manual(values=c("steelblue1","steelblue4"))+
+  geom_point(data = Corn_NDVI_means, aes(y=monitoring, x=Date))+
+  geom_point(data = Corn_NDVI_means, aes(y=validation, x=Date))+
+  ylab("Mean NDVI")+
+  xlab("2019")+
+  ggtitle("Timeseries of the mean NDVI of corn plots")+
+  scale_x_continuous(breaks = round(seq(min(Corn_NDVI_means$Date), max(Corn_NDVI_means$Date), by = 62),1),
+                     labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
 
 # Create graph to visualize potato NDRE development over time
-ggplot(data = Potato_NDRE_means, aes(x=Date, y=monitoring), group=1) +
-  geom_line()+
-  geom_point()+
-  theme_minimal()
+ggplot() +
+  geom_line(data = Potato_NDRE_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+  geom_line(data = Potato_NDRE_means, aes(Date, validation, color="Validation"), size=1)+
+  scale_color_manual(values=c("steelblue1","steelblue4"))+
+  geom_point(data = Potato_NDRE_means, aes(y=monitoring, x=Date))+
+  geom_point(data = Potato_NDRE_means, aes(y=validation, x=Date))+
+  ylab("Mean NDRE")+
+  xlab("2019")+
+  ggtitle("Timeseries of the mean NDRE of Potato plots")+
+  scale_x_continuous(breaks = round(seq(min(Potato_NDRE_means$Date), max(Potato_NDRE_means$Date), by = 62),1),
+                     labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
 
-# Create graph to visualize corn NDRE development over time
-ggplot(data = Potato_NDVI_means, aes(x=Date, y=monitoring), group=1) +
-  geom_line()+
-  geom_point()+
-  theme_minimal()
+# Create graph to visualize potato NDVI development over time
+ggplot() +
+  geom_line(data = Potato_NDVI_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+  geom_line(data = Potato_NDVI_means, aes(Date, validation, color="Validation"), size=1)+
+  scale_color_manual(values=c("steelblue1","steelblue4"))+
+  geom_point(data = Potato_NDVI_means, aes(y=monitoring, x=Date))+
+  geom_point(data = Potato_NDVI_means, aes(y=validation, x=Date))+
+  ylab("Mean NDVI")+
+  xlab("2019")+
+  ggtitle("Timeseries of the mean NDVI of Potato plots")+
+  scale_x_continuous(breaks = round(seq(min(Potato_NDVI_means$Date), max(Potato_NDVI_means$Date), by = 62),1),
+                     labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
