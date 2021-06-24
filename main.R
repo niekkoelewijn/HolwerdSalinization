@@ -62,6 +62,6 @@ source("./R/calculate_statistics.R")
 source("./R/means_per_site.R")
 
 # Source and run Shiny application
-source(".R/useShiny.R")
+source("./R/useShiny.R")
 shinyApp(ui = ui, server = server)
 
