@@ -5,15 +5,16 @@
 # Date: june 2021
 # License: GNU General Public License version 3.0
 
-# Add statistics to vector data
-Corn_plots$mean <- exact_extract(s2_images_NDRE[[1]], Corn_plots, 'mean')
-Potato_plots$mean <- exact_extract(s2_images_NDRE[[1]], Potato_plots, 'mean')
-
-calculate_statistics <- function(number_date){
-  Corn_plots$number_date
-  Potato_plots$number_date
+# Create a function to calculate the mean VI value for a plot per given date 
+calculate_statistics <- function(plots, date, VI){
+  if(VI == NDRE){
+    plots$date <- exact_extract(s2_images_NDRE[[date]], plots, 'mean')
+  }
+  if(VI == NDVI){
+    plots$date <- exact_extract(s2_images_NDVI[[date]], plots, 'mean')
+  }
 }
 
-for (i in 1:length(s2_images_names)){
+for (i in s2_images_names){
   
 }
