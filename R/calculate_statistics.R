@@ -9,35 +9,40 @@
 calculate_statistics <- function(plots, name, number, VI){
   if(VI == "NDRE"){
     plots[name] <- exact_extract(s2_images_NDRE[[number]], plots, 'mean')
-    cappend()
-  }
-  if(VI == "NDVI"){
+  }else{
     plots[name] <- exact_extract(s2_images_NDVI[[number]], plots, 'mean')
   }
 }
 
-# Create columns for the mean values of the VI's per date for both crops
-for (i in s2_images_names){
-  Corn_plots_NDVI[i] <- NA
-}
-
-for (i in s2_images_names){
-  Corn_plots_NDRE[i] <- NA
-}
-
-for (i in s2_images_names){
-  Potato_plots_NDVI[i] <- NA
-}
-
-for (i in s2_images_names){
-  Potato_plots_NDRE[i] <- NA
-}
-
-# Calculate the mean 
+# Calculate the mean NDVI per corn plot
 for (i in 1:length(s2_images_names)){
   Corn_plots_NDVI[s2_images_names[i]] <- calculate_statistics(plots=Corn_plots_NDVI,
                                                               name=s2_images_names[i],
                                                               number=i,
                                                               VI="NDVI")
+}
+
+# Calculate the mean NDVI per potato plot
+for (i in 1:length(s2_images_names)){
+  Potato_plots_NDVI[s2_images_names[i]] <- calculate_statistics(plots=Potato_plots_NDVI,
+                                                              name=s2_images_names[i],
+                                                              number=i,
+                                                              VI="NDVI")
+}
+
+# Calculate the mean NDRE per corn plot
+for (i in 1:length(s2_images_names)){
+  Corn_plots_NDRE[s2_images_names[i]] <- calculate_statistics(plots=Corn_plots_NDRE,
+                                                              name=s2_images_names[i],
+                                                              number=i,
+                                                              VI="NDRE")
+}
+
+# Calculate the mean NDRE per potato plot
+for (i in 1:length(s2_images_names)){
+  Potato_plots_NDRE[s2_images_names[i]] <- calculate_statistics(plots=Potato_plots_NDRE,
+                                                              name=s2_images_names[i],
+                                                              number=i,
+                                                              VI="NDRE")
 }
 
