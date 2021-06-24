@@ -13,6 +13,7 @@ if(!"shiny" %in% rownames(installed.packages())){install.packages("shiny")}
 if(!"shinythemes" %in% rownames(installed.packages())){install.packages("shinythemes")}
 if(!"leaflet" %in% rownames(installed.packages())){install.packages("leaflet")}
 if(!"exactextractr" %in% rownames(installed.packages())){install.packages("exactextractr")}
+if(!"dplyr" %in% rownames(installed.packages())){install.packages("dplyr")}
 
 #load required packages
 library(shiny)
@@ -22,6 +23,8 @@ library(shinythemes)
 library(leaflet)
 library(sf)
 library(exactextractr)
+library(dplyr)
+
 
 # Make a data directory if it not exists
 #datdir <- "./data"
