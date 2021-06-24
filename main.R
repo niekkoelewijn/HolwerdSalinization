@@ -69,6 +69,7 @@ source("./R/calculate_statistics.R")
 # Create dataframes with the mean NDRE and NDVI for monitoring plots and validation plots
 source("./R/means_per_site.R")
 
+<<<<<<< HEAD
 # Create a visualization of the NDRE and NDVI for monitoring plots and validation plots
 source("./R/graph_visualization.R")
 
@@ -76,4 +77,9 @@ source("./R/graph_visualization.R")
 #  geom_line()+
 #  geom_point()+
 #  theme_minimal()
+=======
+# Source and run Shiny application
+source("./R/useShiny.R")
+shinyApp(ui = ui, server = server)
+>>>>>>> 99f0d99ff4cfa4d0d609817fc8679a44761084d6
 
