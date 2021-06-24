@@ -21,7 +21,7 @@ load_fields <- function(path, targetRaster){
   return(fields_plots_CRS)
 }
 
-# Load corn and potato fields vector data into R
+# Load corn and potato fields vector data into R as a sf dataframe
 Corn_plots_NDVI <- load_fields("./data/Corn_monitoring.kml", s2_images[[1]])
 Potato_plots_NDVI <- load_fields("./data/Potato_monitoring.kml", s2_images[[1]])
 

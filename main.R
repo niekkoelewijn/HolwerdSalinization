@@ -58,7 +58,8 @@ s2_images_NDRE <- lapply(s2_images_cloudfree, calculate_NDRE)
 # Calculate mean NDRE and NDVI for every plot
 source("./R/calculate_statistics.R")
 
-
+# Create dataframes with the mean NDRE and NDVI for monitoring plots and validation plots
+source("./R/means_per_site.R")
 
 
 
