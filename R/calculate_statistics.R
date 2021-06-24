@@ -7,10 +7,10 @@
 
 # Create a function to calculate the mean VI value for a plot per given date 
 calculate_statistics <- function(plots, date, VI){
-  if(VI == NDRE){
+  if(VI == "NDRE"){
     plots$date <- exact_extract(s2_images_NDRE[[date]], plots, 'mean')
   }
-  if(VI == NDVI){
+  if(VI == "NDVI"){
     plots$date <- exact_extract(s2_images_NDVI[[date]], plots, 'mean')
   }
 }
