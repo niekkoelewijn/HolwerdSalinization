@@ -22,8 +22,8 @@ url <- list('https://www.dropbox.com/s/hp78y0kl6i3lock/s2_march_19_2019.tif?dl=1
             'https://www.dropbox.com/s/14ymy32i8u4pzzz/s2_september_10_2019.tif?dl=1',
             'https://www.dropbox.com/s/rqhpxmv68j91hkp/s2_september_13_2019.tif?dl=1',
             'https://www.dropbox.com/s/w0u66n6l0ezqgu8/s2_october_10_2019.tif?dl=1',
-            'https://www.dropbox.com/s/tyr0o0kwh5xeex2/s2_october_30_2019.tif?dl=1',
-            'https://www.dropbox.com/s/qozjzjg3izd40x1/s2_december_12_2019.tif?dl=1')
+            'https://www.dropbox.com/s/ifugg7t4k4cio33/s2_october_30_2019.tif?dl=1',
+            'https://www.dropbox.com/s/40s3t922qsmuvid/s2_december_12_2019.tif?dl=1')
             
 
 #Download the data from dropbox and return them as a RasterBrick
