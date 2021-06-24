@@ -33,3 +33,25 @@ Potato_NDVI_means["Date"] <- as.Date(dates)
 rownames(Potato_NDVI_means) <- 1:16
 
 # Create graph to visualize corn NDRE development over time
+ggplot(data = Corn_NDRE_means, aes(x=Date, y=monitoring), group=1) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()
+
+# Create graph to visualize corn NDVI development over time
+ggplot(data = Corn_NDVI_means, aes(x=Date, y=monitoring), group=1) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()
+
+# Create graph to visualize potato NDRE development over time
+ggplot(data = Potato_NDRE_means, aes(x=Date, y=monitoring), group=1) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()
+
+# Create graph to visualize corn NDRE development over time
+ggplot(data = Potato_NDVI_means, aes(x=Date, y=monitoring), group=1) +
+  geom_line()+
+  geom_point()+
+  theme_minimal()

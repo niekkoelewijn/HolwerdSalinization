@@ -11,7 +11,7 @@ download_data = function(url, savename) {
   destinationname <- paste0('./data/',savename,'.tif')
   #The line below downloads data from a dropbox. This gives problems when run on different operating systems 
   #Windows and OS, therefore we now have the data on github
-  #download.file(url = as.character(url), destfile = destinationname, method = 'auto') 
+  download.file(url = as.character(url), destfile = destinationname, method = 'auto') 
   Rasterbrick = brick(destinationname)
   return(Rasterbrick)
 } 
