@@ -14,6 +14,11 @@ if(!"shinythemes" %in% rownames(installed.packages())){install.packages("shinyth
 if(!"leaflet" %in% rownames(installed.packages())){install.packages("leaflet")}
 if(!"exactextractr" %in% rownames(installed.packages())){install.packages("exactextractr")}
 if(!"dplyr" %in% rownames(installed.packages())){install.packages("dplyr")}
+if(!"ggplot2" %in% rownames(installed.packages())){install.packages("ggplot2")}
+if(!"hrbrthemes" %in% rownames(installed.packages())){install.packages("hrbrthemes")}
+if(!"data.table" %in% rownames(installed.packages())){install.packages("data.table")}
+
+
 
 #load required packages
 library(shiny)
@@ -24,6 +29,9 @@ library(leaflet)
 library(sf)
 library(exactextractr)
 library(dplyr)
+library(ggplot2)
+library(hrbrthemes)
+library(data.table)
 
 
 # Make a data directory if it not exists
@@ -61,5 +69,11 @@ source("./R/calculate_statistics.R")
 # Create dataframes with the mean NDRE and NDVI for monitoring plots and validation plots
 source("./R/means_per_site.R")
 
+# Create a visualization of the NDRE and NDVI for monitoring plots and validation plots
+source("./R/graph_visualization.R")
 
+#ggplot(data = Corn_NDRE_means, aes(x=Date, y=monitoring), group=1) +
+#  geom_line()+
+#  geom_point()+
+#  theme_minimal()
 
