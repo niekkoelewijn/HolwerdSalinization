@@ -14,14 +14,25 @@ library(shiny)
 library(leaflet)
 
 ui <- fluidPage(br(),
-                titlePanel(strong("Holwerd aan Zee salinization monitoring in 2019")), br(), br(),
+                
+                
+                #Create the title panel & asign theme
+                titlePanel(strong("Holwerd aan Zee salinization monitoring baseline analysis 2019")), br(), br(),
+                theme = shinytheme("superhero"),
+                
+                #create layout of the application: side bar layout
                 sidebarLayout(
+                  
+                  #side bar consists of a dropdown menu for NDVI/NDRE and a slide bar throughout the year
                   sidebarPanel(
-                    selectInput('Index', 'Select the NDVI or NDRE index', choices = c("NDVI", "NDRE")),
+                    selectInput('Composite', 'Select composite RGB, FCC or Red edge (for Study Area tab)', choices = c("RGB", "FCC", "Red edge"), selected = "RGB"),
+                    selectInput('Index', 'Select the NDVI or NDRE index (for Monitor tabs)', choices = c("NDVI", "NDRE"), selected = "NDVI"),
                     sliderInput(
                       'Image','Select a date',
                       1, 16, 1),
                     textOutput("Date")),
+                  
+                  #create the main layout with different tabs
                   mainPanel(
                     tabsetPanel(type='tabs',
                                 tabPanel('Information', textOutput('info'),
@@ -48,38 +59,57 @@ ui <- fluidPage(br(),
                                            "5. step 5"), br(),
                                 ),
                                 
-                                tabPanel('Satellite', br(), strong(textOutput('titleSat'), align="center"), br(), plotOutput('satellite')),
-                                tabPanel('Maps', br(), strong(textOutput('titleMaps'), align="center"), br(), plotOutput('maps')),
-                                tabPanel('Graphs', br(), strong(textOutput('titleGraphs'), align="center"), br(), plotOutput('graphs')))
+                                tabPanel('Study Area', br(), strong(textOutput('titleStudyArea'), align="center"), br(), plotOutput('studyarea')),
+                                tabPanel('Monitor Maps', br(), strong(textOutput('titleMaps'), align="center"), br(), plotOutput('maps')),
+                                tabPanel('Monitor Graphs', br(), strong(textOutput('titleGraphs'), align="center"), br(), plotOutput('graphs')))
                   )
                 )
 )
 
 server <- function(input, output, session) {
   
+    
+  
   output$Date <- renderText({
     paste('Date:', 
           substr(s2_images_names[input$Image], 4,13))
   })
   
-  output$titleSat <- renderText({paste('Satellite image Holwerd aan Zee', substr(s2_images_names[input$Image], 4,13))})
-  
-  output$satellite <- renderPlot({
-    plotRGB(s2_images_cloudfree[[input$Image]], 3,2,1, scale = 5000, stretch = "lin")
+  output$titleStudyArea <- renderText({paste('Satellite band composites Holwerd aan Zee', substr(s2_images_names[input$Image], 4,13))})
+
+  output$studyarea <- renderPlot({
+    if (input$Composite == 'RGB'){
+      plotRGB(s2_images_cloudfree[[input$Image]], 3,2,1, scale = 5000, stretch = "lin")
+    }
+    else if (input$Composite == 'FCC'){
+      plotRGB(s2_images_cloudfree[[input$Image]], 5,3,2, scale = 5000, stretch = "lin")
+    }
+    else if (input$Composite == 'Red edge'){
+      plotRGB(s2_images_cloudfree[[input$Image]], 4,3,2, scale = 5000, stretch = "lin")
+    }
   })
   
-  output$titleMaps <- renderText({paste('Satellite image Holwerd aan Zee', substr(s2_images_names[input$Image], 4,13))})
-  
+  output$titleMaps <- renderText({paste('Monitoring leaflet map for monitoring fields', substr(s2_images_names[input$Image], 4,13))})
+
   output$maps <- renderPlot({
     if (input$Index == 'NDVI'){
       plotRGB(s2_images_cloudfree[[input$Image]], 5,4,3, scale = 5000, stretch = "lin")
     }
     if (input$Index == 'NDRE'){
       plotRGB(s2_images_cloudfree[[input$Image]], 5,3,2, scale = 5000, stretch = "lin")
-    } 
-
+    }
   })
   
+  output$titleGraphs <- renderText({paste('Monitoring graph of index over the year')})
+    
+  output$graphs <- renderPlot({
+    if (input$Index == 'NDVI'){
+      plotRGB(s2_images_cloudfree[[input$Image]], 5,4,3, scale = 5000, stretch = "lin")
+    }
+    if (input$Index == 'NDRE'){
+      plotRGB(s2_images_cloudfree[[input$Image]], 5,3,2, scale = 5000, stretch = "lin")
+    }
+  })
 }
 
 shinyApp(ui = ui, server = server)
