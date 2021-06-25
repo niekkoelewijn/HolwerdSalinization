@@ -60,7 +60,7 @@ ui <- fluidPage(br(),
                                 ),
                                 
                                 tabPanel('Study Area', br(), strong(textOutput('titleStudyArea'), align="center"), br(), plotOutput('studyarea')),
-                                tabPanel('Monitor Maps', br(), strong(textOutput('titleMaps'), align="center"), br(), plotOutput('maps')),
+                                tabPanel('Monitor Maps', br(), strong(textOutput('titleMaps'), align="center"), br(), leafletOutput('maps')),
                                 tabPanel('Monitor Corn Graphs', br(), strong(textOutput('titleCornGraphs'), align="center"), br(), plotOutput('corngraphs')),
                                 tabPanel('Monitor Potato Graphs', br(), strong(textOutput('titlePotatoGraphs'), align="center"), br(), plotOutput('potatographs')))
                   )
@@ -92,15 +92,18 @@ server <- function(input, output, session) {
   
   output$titleMaps <- renderText({paste('Monitoring leaflet map for monitoring fields', substr(s2_images_names[input$Image], 4,13))})
 
-  output$maps <- renderPlot({
+  output$maps <- renderLeaflet({
+    
     if (input$Index == 'NDVI'){
-      plotRGB(s2_images_cloudfree[[input$Image]], 5,4,3, scale = 5000, stretch = "lin")
+      #leaflet
     }
-    if (input$Index == 'NDRE'){
-      plotRGB(s2_images_cloudfree[[input$Image]], 5,3,2, scale = 5000, stretch = "lin")
+    
+    else if (input$Index == 'NDRE'){
+      #leaflet
     }
+      
   })
-  
+
   output$titleCornGraphs <- renderText({paste('Monitoring CORN graph of index over the year')})
     
   output$corngraphs <- renderPlot({
