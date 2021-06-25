@@ -90,7 +90,7 @@ server <- function(input, output, session) {
     }
   })
   
-  output$titleMaps <- renderText({paste('Monitoring leaflet map for monitoring fields', substr(s2_images_names[input$Image], 4,13))})
+  output$titleMaps <- renderText({paste('Interactive map vegetation indices and plot locations', substr(s2_images_names[input$Image], 4,13))})
 
   output$maps <- renderLeaflet({
     
