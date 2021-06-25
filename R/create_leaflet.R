@@ -7,19 +7,51 @@
 
 #create leaflet maps
 
-#NDVI leaflet map
-
-##
-
+## Data preparation for NDVI leaflet map
 corn_mon_NDVI <- Corn_plots_NDVI[1:4,(1+3)]
 corn_val_NDVI <- Corn_plots_NDVI[5:8,(1+3)]
 potato_mon_NDVI <- Potato_plots_NDVI[1:4,(1+3)]
 potato_val_NDVI <- Potato_plots_NDVI[5:8,(1+3)]
 
+# Transform to correct EPSG and drop z dimension
+corn_mon_NDVI <- st_as_sf(corn_mon_NDVI)
+corn_mon_NDVI <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+corn_mon_NDVI <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+corn_val_NDVI <- st_as_sf(corn_mon_NDVI)
+corn_val_NDVI <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+corn_val_NDVI <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+potato_mon_NDVI <- st_as_sf(corn_mon_NDVI)
+potato_mon_NDVI <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+potato_mon_NDVI <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+potato_val_NDVI <- st_as_sf(corn_mon_NDVI)
+potato_val_NDVI <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+potato_val_NDVI <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+# Data preparation for NDRE leaflet map
 corn_mon_NDRE <- Corn_plots_NDRE[1:4,(1+3)]
 corn_val_NDRE <- Corn_plots_NDRE[5:8,(1+3)]
 potato_mon_NDRE <- Potato_plots_NDRE[1:4,(1+3)]
 potato_val_NDRE <- Potato_plots_NDRE[5:8,(1+3)]
+
+# Transform to correct EPSG and drop z dimension
+corn_mon_NDRE <- st_as_sf(corn_mon_NDVI)
+corn_mon_NDRE <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+corn_mon_NDRE <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+corn_val_NDRE <- st_as_sf(corn_mon_NDVI)
+corn_val_NDRE <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+corn_val_NDRE <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+potato_mon_NDRE <- st_as_sf(corn_mon_NDVI)
+potato_mon_NDRE <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+potato_mon_NDRE <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+potato_val_NDRE <- st_as_sf(corn_mon_NDVI)
+potato_val_NDRE <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+potato_val_NDRE <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
 
 #create leaflet of NDVI
 #pal <-  colorBin(palette = "RdYlGn", domain = corn_mon_NDVI)
@@ -32,13 +64,14 @@ leaflet() %>%
     #overlayGroups = c("NDVI raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
     #options = layersControlOptions(collapsed = FALSE)) %>%
   addScaleBar(position = "bottomleft") %>%
-  addPolygons(data = st_zm(corn_mon_NDVI), color="Black", weight = 1, smoothFactor = 0.5,
-              opacity = 1.0, fillOpacity = 0.5, fillColor = ~colorQuantile("YlOrRd", corn_mon_NDVI)(corn_mon_NDVI))
+  addPolygons(data = corn_mon_NDVI_trans, color = "green")
 
-leaflet() %>%
-  addProviderTiles("CartoDB.Positron") %>%
-  addPolygons(data = corn_mon_NDVI, color="Black", weight = 1, smoothFactor = 0.5,
-              opacity = 1.0, fillOpacity = 0.5)
 
-  
+
+corn_mon_NDVI_trans <- st_as_sf(corn_mon_NDVI)
+corn_mon_NDVI_trans <- sf::st_transform(corn_mon_NDVI_trans, 4326)
+corn_mon_NDVI_trans <- st_zm(corn_mon_NDVI_trans, drop = T, what = "ZM")
+
+corn_mon_NDVI_trans <- st_zm(corn_mon_NDVI)
+
 
