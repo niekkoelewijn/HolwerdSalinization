@@ -103,10 +103,14 @@ server <- function(input, output, session) {
           overlayGroups = c("NDVI raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
           options = layersControlOptions(collapsed = FALSE)) %>%
         addScaleBar(position = "bottomleft") %>%
-        addPolygons(data = corn_mon_NDVI, color = "green") %>%
-        addPolygons(data = corn_val_NDVI, color = "steelblue4") %>%
-        addPolygons(data = potato_mon_NDVI, color = "yellow1") %>%
-        addPolygons(data = potato_val_NDVI, color = "yellow4")
+        addPolygons(data = corn_mon_NDVI, color = "#cb9c10", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon") %>%
+        addPolygons(data = corn_val_NDVI, color = "#9c780d", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_val") %>%
+        addPolygons(data = potato_mon_NDVI, color = "#974b0c", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon") %>%
+        addPolygons(data = potato_val_NDVI, color = "#552a07", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_val")
     }
     
     else if (input$Index == 'NDRE'){
@@ -118,10 +122,14 @@ server <- function(input, output, session) {
           overlayGroups = c("NDRE raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
           options = layersControlOptions(collapsed = FALSE)) %>%
         addScaleBar(position = "bottomleft") %>%
-        addPolygons(data = corn_mon_NDVI, color = "blue") %>%
-        addPolygons(data = corn_val_NDVI, color = "steelblue4") %>%
-        addPolygons(data = potato_mon_NDVI, color = "yellow1") %>%
-        addPolygons(data = potato_val_NDVI, color = "yellow4")
+        addPolygons(data = corn_mon_NDVI, color = "#cb9c10", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon") %>%
+        addPolygons(data = corn_val_NDVI, color = "#9c780d", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_val") %>%
+        addPolygons(data = potato_mon_NDVI, color = "#974b0c", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon") %>%
+        addPolygons(data = potato_val_NDVI, color = "#552a07", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_val")
     }
       
   })

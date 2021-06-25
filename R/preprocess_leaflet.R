@@ -56,22 +56,7 @@ potato_val_NDRE <- st_zm(potato_val_NDRE, drop = T, what = "ZM")
 #create leaflet of NDVI
 #pal <-  colorBin(palette = "RdYlGn", domain = corn_mon_NDVI)
 
-leaflet() %>%
-  addProviderTiles("CartoDB.Positron") %>%
-  addRasterImage(x=s2_images_NDVI[[16]], colors = "RdYlGn", opacity = 0.8, group="NDVI raster") %>%
-  #addLegend("bottomright", pal=pal, values= s2_images_NDVI[[1]]@data@values, title = "NDVItitle", opacity= 1) %>%
-  addLayersControl( 
-    overlayGroups = c("NDVI raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
-    options = layersControlOptions(collapsed = FALSE)) %>%
-  addScaleBar(position = "bottomleft") %>%
-  addPolygons(data = corn_mon_NDVI, color = "#cb9c10", weight = 1, smoothFactor = 0.5,
-              opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon") %>%
-  addPolygons(data = corn_val_NDVI, color = "#9c780d", weight = 1, smoothFactor = 0.5,
-              opacity = 1.0, fillOpacity = 0.5, group = "Corn_val") %>%
-  addPolygons(data = potato_mon_NDVI, color = "#974b0c", weight = 1, smoothFactor = 0.5,
-              opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon") %>%
-  addPolygons(data = potato_val_NDVI, color = "#552a07", weight = 1, smoothFactor = 0.5,
-              opacity = 1.0, fillOpacity = 0.5, group = "Potato_val")
+
 
 
 
