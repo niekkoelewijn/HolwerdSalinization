@@ -95,11 +95,33 @@ server <- function(input, output, session) {
   output$maps <- renderLeaflet({
     
     if (input$Index == 'NDVI'){
-      #leaflet
+      leaflet() %>%
+        addProviderTiles("CartoDB.Positron") %>%
+        addRasterImage(x=s2_images_NDVI[[input$Image]], colors = "RdYlGn", opacity = 0.8, group="NDVI raster") %>%
+        #addLegend("bottomright", pal=pal, values= s2_images_NDVI[[1]]@data@values, title = "NDVItitle", opacity= 1) %>%
+        addLayersControl( 
+          overlayGroups = c("NDVI raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
+          options = layersControlOptions(collapsed = FALSE)) %>%
+        addScaleBar(position = "bottomleft") %>%
+        addPolygons(data = corn_mon_NDVI, color = "green") %>%
+        addPolygons(data = corn_val_NDVI, color = "steelblue4") %>%
+        addPolygons(data = potato_mon_NDVI, color = "yellow1") %>%
+        addPolygons(data = potato_val_NDVI, color = "yellow4")
     }
     
     else if (input$Index == 'NDRE'){
-      #leaflet
+      leaflet() %>%
+        addProviderTiles("CartoDB.Positron") %>%
+        addRasterImage(x=s2_images_NDRE[[input$Image]], colors = "RdYlGn", opacity = 0.8, group="NDRE raster") %>%
+        #addLegend("bottomright", pal=pal, values= s2_images_NDVI[[1]]@data@values, title = "NDVItitle", opacity= 1) %>%
+        addLayersControl( 
+          overlayGroups = c("NDRE raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
+          options = layersControlOptions(collapsed = FALSE)) %>%
+        addScaleBar(position = "bottomleft") %>%
+        addPolygons(data = corn_mon_NDVI, color = "blue") %>%
+        addPolygons(data = corn_val_NDVI, color = "steelblue4") %>%
+        addPolygons(data = potato_mon_NDVI, color = "yellow1") %>%
+        addPolygons(data = potato_val_NDVI, color = "yellow4")
     }
       
   })
