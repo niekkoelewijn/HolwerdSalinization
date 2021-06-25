@@ -120,7 +120,7 @@ server <- function(input, output, session) {
         theme(plot.title = element_text(hjust = 0.5))
     }
     
-    if (input$Index == 'NDRE'){
+    else if (input$Index == 'NDRE'){
       ggplot() +
         geom_line(data = Corn_NDRE_means, aes(Date, monitoring, color="Monitoring"), size=1)+
         geom_line(data = Corn_NDRE_means, aes(Date, validation, color="Validation"), size=1)+
@@ -156,7 +156,7 @@ server <- function(input, output, session) {
         theme(plot.title = element_text(hjust = 0.5))
     }
     
-    if (input$Index == 'NDRE'){
+    else if (input$Index == 'NDRE'){
       ggplot() +
         geom_line(data = Potato_NDRE_means, aes(Date, monitoring, color="Monitoring"), size=1)+
         geom_line(data = Potato_NDRE_means, aes(Date, validation, color="Validation"), size=1)+

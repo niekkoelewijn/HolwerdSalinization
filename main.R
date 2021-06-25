@@ -76,4 +76,16 @@ source("./R/graph_visualization.R", echo = T)
 source("./R/useShiny.R")
 shinyApp(ui = ui, server = server)
 
-
+ggplot() +
+  geom_line(data = Potato_NDVI_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+  geom_line(data = Potato_NDVI_means, aes(Date, validation, color="Validation"), size=1)+
+  scale_color_manual(values=c("steelblue1","steelblue4"))+
+  geom_point(data = Potato_NDVI_means, aes(y=monitoring, x=Date))+
+  geom_point(data = Potato_NDVI_means, aes(y=validation, x=Date))+
+  ylab("Mean NDVI")+
+  xlab("2019")+
+  ggtitle("Timeseries of the mean NDVI of Potato plots")+
+  scale_x_continuous(breaks = round(seq(min(Potato_NDVI_means$Date), max(Potato_NDVI_means$Date), by = 62),1),
+                     labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+  theme_minimal()+
+  theme(plot.title = element_text(hjust = 0.5))
