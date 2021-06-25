@@ -70,8 +70,7 @@ source("./R/calculate_statistics.R")
 source("./R/means_per_site.R")
 
 # Create a visualization of the NDRE and NDVI for monitoring plots and validation plots
-source("./R/graph_visualization.R")
-
+source("./R/graph_visualization.R", echo = T)
 
 # Source and run Shiny application
 #source("./R/useShiny.R")
