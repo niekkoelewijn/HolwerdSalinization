@@ -73,7 +73,7 @@ source("./R/means_per_site.R")
 source("./R/graph_visualization.R", echo = T)
 
 # Source and run Shiny application
-#source("./R/useShiny.R")
-#shinyApp(ui = ui, server = server)
+source("./R/useShiny.R")
+shinyApp(ui = ui, server = server)
 
 

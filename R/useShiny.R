@@ -61,7 +61,8 @@ ui <- fluidPage(br(),
                                 
                                 tabPanel('Study Area', br(), strong(textOutput('titleStudyArea'), align="center"), br(), plotOutput('studyarea')),
                                 tabPanel('Monitor Maps', br(), strong(textOutput('titleMaps'), align="center"), br(), plotOutput('maps')),
-                                tabPanel('Monitor Graphs', br(), strong(textOutput('titleGraphs'), align="center"), br(), plotOutput('graphs')))
+                                tabPanel('Monitor Corn Graphs', br(), strong(textOutput('titleCornGraphs'), align="center"), br(), plotOutput('corngraphs')),
+                                tabPanel('Monitor Potato Graphs', br(), strong(textOutput('titlePotatoGraphs'), align="center"), br(), plotOutput('potatographs')))
                   )
                 )
 )
@@ -100,14 +101,75 @@ server <- function(input, output, session) {
     }
   })
   
-  output$titleGraphs <- renderText({paste('Monitoring graph of index over the year')})
+  output$titleCornGraphs <- renderText({paste('Monitoring CORN graph of index over the year')})
     
-  output$graphs <- renderPlot({
+  output$corngraphs <- renderPlot({
     if (input$Index == 'NDVI'){
-      plotRGB(s2_images_cloudfree[[input$Image]], 5,4,3, scale = 5000, stretch = "lin")
+      ggplot() +
+        geom_line(data = Corn_NDVI_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+        geom_line(data = Corn_NDVI_means, aes(Date, validation, color="Validation"), size=1)+
+        scale_color_manual(values=c("steelblue1","steelblue4"))+
+        geom_point(data = Corn_NDVI_means, aes(y=monitoring, x=Date))+
+        geom_point(data = Corn_NDVI_means, aes(y=validation, x=Date))+
+        ylab("Mean NDVI")+
+        xlab("2019")+
+        ggtitle("Timeseries of the mean NDVI of corn plots")+
+        scale_x_continuous(breaks = round(seq(min(Corn_NDVI_means$Date), max(Corn_NDVI_means$Date), by = 62),1),
+                           labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+        theme_minimal()+
+        theme(plot.title = element_text(hjust = 0.5))
     }
+    
     if (input$Index == 'NDRE'){
-      plotRGB(s2_images_cloudfree[[input$Image]], 5,3,2, scale = 5000, stretch = "lin")
+      ggplot() +
+        geom_line(data = Corn_NDRE_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+        geom_line(data = Corn_NDRE_means, aes(Date, validation, color="Validation"), size=1)+
+        scale_color_manual(values=c("steelblue1","steelblue4"))+
+        geom_point(data = Corn_NDRE_means, aes(y=monitoring, x=Date))+
+        geom_point(data = Corn_NDRE_means, aes(y=validation, x=Date))+
+        ylab("Mean NDRE")+
+        xlab("2019")+
+        ggtitle("Timeseries of the mean NDRE of corn plots")+
+        scale_x_continuous(breaks = round(seq(min(Corn_NDRE_means$Date), max(Corn_NDRE_means$Date), by = 62),1),
+                           labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+        theme_minimal()+
+        theme(plot.title = element_text(hjust = 0.5))
+    }
+  })
+  
+  output$titlePotatoGraphs <- renderText({paste('Monitoring POTATO graph of index over the year')})
+  
+  output$potatographs <- renderPlot({
+    if (input$Index == 'NDVI'){
+      ggplot() +
+        geom_line(data = Potato_NDVI_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+        geom_line(data = Potato_NDVI_means, aes(Date, validation, color="Validation"), size=1)+
+        scale_color_manual(values=c("steelblue1","steelblue4"))+
+        geom_point(data = Potato_NDVI_means, aes(y=monitoring, x=Date))+
+        geom_point(data = Potato_NDVI_means, aes(y=validation, x=Date))+
+        ylab("Mean NDVI")+
+        xlab("2019")+
+        ggtitle("Timeseries of the mean NDVI of Potato plots")+
+        scale_x_continuous(breaks = round(seq(min(Potato_NDVI_means$Date), max(Potato_NDVI_means$Date), by = 62),1),
+                           labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+        theme_minimal()+
+        theme(plot.title = element_text(hjust = 0.5))
+    }
+    
+    if (input$Index == 'NDRE'){
+      ggplot() +
+        geom_line(data = Potato_NDRE_means, aes(Date, monitoring, color="Monitoring"), size=1)+
+        geom_line(data = Potato_NDRE_means, aes(Date, validation, color="Validation"), size=1)+
+        scale_color_manual(values=c("steelblue1","steelblue4"))+
+        geom_point(data = Potato_NDRE_means, aes(y=monitoring, x=Date))+
+        geom_point(data = Potato_NDRE_means, aes(y=validation, x=Date))+
+        ylab("Mean NDRE")+
+        xlab("2019")+
+        ggtitle("Timeseries of the mean NDRE of Potato plots")+
+        scale_x_continuous(breaks = round(seq(min(Potato_NDRE_means$Date), max(Potato_NDRE_means$Date), by = 62),1),
+                           labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
+        theme_minimal()+
+        theme(plot.title = element_text(hjust = 0.5))
     }
   })
 }
