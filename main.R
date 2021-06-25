@@ -70,10 +70,10 @@ source("./R/calculate_statistics.R")
 source("./R/means_per_site.R")
 
 # Create a visualization of the NDRE and NDVI for monitoring plots and validation plots
-source("./R/graph_visualization.R", echo = T)
+source("./R/preprocess_ggplot2.R", echo = T)
 
 # source the preprocess script for leaflet maps
-source("./R/preprocces_leaflet.R")
+source("./R/preprocess_leaflet.R")
 
 # Source and run Shiny application
 source("./R/useShiny.R")
