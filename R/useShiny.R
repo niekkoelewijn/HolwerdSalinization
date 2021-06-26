@@ -36,7 +36,7 @@ ui <- fluidPage(br(),
                   mainPanel(
                     tabsetPanel(type='tabs',
                                 tabPanel('Information', textOutput('info'),
-                                         br(), h4('Project team'),
+                                         br(), h3('Project team'),
                                          (
                                            "This project was part of the Remote Sensing and GIS integration course of the Wageningen University MGI master program. The commissioner for this project was Wiertsema & Partners."), br(), br(),
                                          (
@@ -44,19 +44,19 @@ ui <- fluidPage(br(),
                                          (
                                            "29 June 2021"),
                                          
-                                         h4('Introduction'),
+                                         h3('Introduction'),
                                          (
                                            "Hello!  Welcome to the 'Holwerd aan Zee' salinization monitoring' application to detect salinization in Holwerd (Friesland)."), 
                                          br(), 
                                          (
                                           "In this app you can find:  The study area Holwerd. The study area can be observed in RGB, False color composite (FCC) and Red Edge.  The monitoring maps that have been created are presented. Also, monitoring graphs showing the development of Normalized Difference Vegetation Index (NDVI) and Normalized Difference Red Edge Index (NDRE) indices over time for different crops with medium and deep rooting systems (Potato and Corn respectively)."),
                                          
-                                         br(), h4('Data'),
+                                         br(), h3('Data'),
                                          (
                                            "The data that was used for creating this salinization application includes freely available Sentinal-2 data. Specific bands that were used include bands 2, 3 and 4 (Blue, Green and Red at 10m resolution), band 5 (Red Edge at 20m resolution) and band 8 (NIR) at 10m resolution). Copy the link below to find the used GEE script for extracting the data in the HolwerdSalinization folder"),
                                          a(
                                            "https://code.earthengine.google.com/?accept_repo=users/niekkoelewijn/geoscripting"),
-                                         br(), h4('Methodology'),
+                                         br(), h3('Methodology'),
                                          (
                                            "This application was made through the use of the R Shiny package, which enables the user to create web apps. The following steps were conducted to process the data:"), br(), br(),
                                          (
@@ -180,6 +180,7 @@ server <- function(input, output, session) {
         geom_point(data = Corn_NDVI_means, aes(y=validation, x=Date))+
         ylab("Mean NDVI")+
         xlab("2019")+
+        ylim(0,1)+
         ggtitle("Timeseries of the mean NDVI of corn plots")+
         scale_x_continuous(breaks = round(seq(min(Corn_NDVI_means$Date), max(Corn_NDVI_means$Date), by = 62),1),
                            labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
@@ -196,6 +197,7 @@ server <- function(input, output, session) {
         geom_point(data = Corn_NDRE_means, aes(y=validation, x=Date))+
         ylab("Mean NDRE")+
         xlab("2019")+
+        ylim(0,1)+
         ggtitle("Timeseries of the mean NDRE of corn plots")+
         scale_x_continuous(breaks = round(seq(min(Corn_NDRE_means$Date), max(Corn_NDRE_means$Date), by = 62),1),
                            labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
@@ -216,6 +218,7 @@ server <- function(input, output, session) {
         geom_point(data = Potato_NDVI_means, aes(y=validation, x=Date))+
         ylab("Mean NDVI")+
         xlab("2019")+
+        ylim(0,1)+
         ggtitle("Timeseries of the mean NDVI of Potato plots")+
         scale_x_continuous(breaks = round(seq(min(Potato_NDVI_means$Date), max(Potato_NDVI_means$Date), by = 62),1),
                            labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
@@ -232,6 +235,7 @@ server <- function(input, output, session) {
         geom_point(data = Potato_NDRE_means, aes(y=validation, x=Date))+
         ylab("Mean NDRE")+
         xlab("2019")+
+        ylim(0,1)+
         ggtitle("Timeseries of the mean NDRE of Potato plots")+
         scale_x_continuous(breaks = round(seq(min(Potato_NDRE_means$Date), max(Potato_NDRE_means$Date), by = 62),1),
                            labels = c("19 March", "20 May", "21 July", "21 September", "22 November"))+
