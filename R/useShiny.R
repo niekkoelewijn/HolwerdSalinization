@@ -36,28 +36,42 @@ ui <- fluidPage(br(),
                   mainPanel(
                     tabsetPanel(type='tabs',
                                 tabPanel('Information', textOutput('info'),
+                                         br(), h4('Project team'),
+                                         (
+                                           "This project was part of the Remote Sensing and GIS integration course of the Wageningen University MGI master program. The commissioner for this project was Wiertsema & Partners."), br(), br(),
+                                         (
+                                           "Louisa Heilinger, Niek Koelewijn, Marlot van Balveren, Jan Hooijmans & Thijs Koop"), br(),
+                                         (
+                                           "29 June 2021"),
+                                         
                                          h4('Introduction'),
                                          (
-                                           "some introduction text"), 
-                                         br(), br(), h4('Data'),
+                                           "Hello!  Welcome to the 'Holwerd aan Zee' salinization monitoring' application to detect salinization in Holwerd (Friesland)."), 
+                                         br(), 
                                          (
-                                           "some text about the data that was used"),
+                                          "In this app you can find:  The study area Holwerd. The study area can be observed in RGB, False color composite (FCC) and Red Edge.  The monitoring maps that have been created are presented. Also, monitoring graphs showing the development of Normalized Difference Vegetation Index (NDVI) and Normalized Difference Red Edge Index (NDRE) indices over time for different crops with medium and deep rooting systems (Potato and Corn respectively)."),
+                                         
+                                         br(), h4('Data'),
+                                         (
+                                           "The data that was used for creating this salinization application includes freely available Sentinal-2 data. Specific bands that were used include bands 2, 3 and 4 (Blue, Green and Red at 10m resolution), band 5 (Red Edge at 20m resolution) and band 8 (NIR) at 10m resolution). Copy the link below to find the used GEE script for extracting the data in the HolwerdSalinization folder"),
                                          a(
                                            "https://code.earthengine.google.com/?accept_repo=users/niekkoelewijn/geoscripting"),
-                                         br(), br(), h4('Methodology'),
+                                         br(), h4('Methodology'),
                                          (
-                                           "some text about the methodology "), br(), br(),
+                                           "This application was made through the use of the R Shiny package, which enables the user to create web apps. The following steps were conducted to process the data:"), br(), br(),
                                          (
-                                           "1. step 1"), br(),
+                                           "1.	Draw study area and agricultural plots (monitor and validation) in Google Earth Engine"), br(),
                                          (
-                                           "2. step 2)"), br(),
+                                           "2.	Load polygons into R script and download Sentinal-2 data clipped to study area"), br(),
                                          (
-                                           "3. step 3"), br(),
+                                           "3.	Calculate NDVI and NDRE values of each agricultural plot and plot development over time into graphs, for both the monitor and validation fields "), br(),
                                          (
-                                           "4. step 4"), br(),
+                                           "4.	If NDRE values on monitor fields become low, which is not the case on validation fields, it is likely that stress is detected due to salinization in future situations when the tidal lake is established. NDVI must be checked however if this decline in NDRE is not due to biomass loss (for instance, harvesting).  "), br(),
                                          (
-                                           "5. step 5"), br(),
-                                ),
+                                           "5.	If a decrease in NDRE is not related to harvesting, then in-situ measurements can take place in order to further investigate the salinization process (monitoring wells)"), br(),
+                                         
+                                         
+                                         ),
                                 
                                 tabPanel('Study Area', br(), strong(textOutput('titleStudyArea'), align="center"), br(), plotOutput('studyarea')),
                                 tabPanel('Monitor Maps', br(), strong(textOutput('titleMaps'), align="center"), br(), leafletOutput('maps')),
@@ -134,7 +148,7 @@ server <- function(input, output, session) {
       
   })
 
-  output$titleCornGraphs <- renderText({paste('Monitoring CORN graph of index over the year')})
+  output$titleCornGraphs <- renderText({paste('Monitoring CORN graph of vegetation index over the year')})
     
   output$corngraphs <- renderPlot({
     if (input$Index == 'NDVI'){
@@ -170,7 +184,7 @@ server <- function(input, output, session) {
     }
   })
   
-  output$titlePotatoGraphs <- renderText({paste('Monitoring POTATO graph of index over the year')})
+  output$titlePotatoGraphs <- renderText({paste('Monitoring POTATO graph of vegetation index over the year')})
   
   output$potatographs <- renderPlot({
     if (input$Index == 'NDVI'){
