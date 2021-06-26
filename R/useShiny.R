@@ -95,41 +95,61 @@ server <- function(input, output, session) {
   output$maps <- renderLeaflet({
     
     if (input$Index == 'NDVI'){
+      pal <-  colorBin(palette = "RdYlGn", domain = s2_images_NDVI[[input$Image]]@data@values)
+      
       leaflet() %>%
         addProviderTiles("CartoDB.Positron") %>%
         addRasterImage(x=s2_images_NDVI[[input$Image]], colors = "RdYlGn", opacity = 0.8, group="NDVI raster") %>%
-        #addLegend("bottomright", pal=pal, values= s2_images_NDVI[[1]]@data@values, title = "NDVItitle", opacity= 1) %>%
+        addLegend("bottomright", pal = pal, values= s2_images_NDVI[[input$Image]]@data@values, title = "NDVI", opacity= 1) %>%
         addLayersControl( 
           overlayGroups = c("NDVI raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
           options = layersControlOptions(collapsed = FALSE)) %>%
         addScaleBar(position = "bottomleft") %>%
         addPolygons(data = corn_mon_NDVI, color = "#cb9c10", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon") %>%
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Corn monitoring")%>% lapply(htmltools::HTML)) %>%
         addPolygons(data = corn_val_NDVI, color = "#9c780d", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_val") %>%
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_val",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Corn validation")%>% lapply(htmltools::HTML)) %>%
         addPolygons(data = potato_mon_NDVI, color = "#974b0c", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon") %>%
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Potato monitoring")%>% lapply(htmltools::HTML)) %>%
         addPolygons(data = potato_val_NDVI, color = "#552a07", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_val")
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_val",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Potato validation")%>% lapply(htmltools::HTML))
     }
     
     else if (input$Index == 'NDRE'){
+      pal <-  colorBin(palette = "RdYlGn", domain = s2_images_NDRE[[input$Image]]@data@values)
+      
       leaflet() %>%
         addProviderTiles("CartoDB.Positron") %>%
         addRasterImage(x=s2_images_NDRE[[input$Image]], colors = "RdYlGn", opacity = 0.8, group="NDRE raster") %>%
-        #addLegend("bottomright", pal=pal, values= s2_images_NDVI[[1]]@data@values, title = "NDVItitle", opacity= 1) %>%
+        addLegend("bottomright", pal = pal, values= s2_images_NDRE[[input$Image]]@data@values, title = "NDRE", opacity= 1) %>%
         addLayersControl( 
           overlayGroups = c("NDRE raster", "Corn_mon", "Corn_val", "Potato_mon", "Potato_val"),
           options = layersControlOptions(collapsed = FALSE)) %>%
         addScaleBar(position = "bottomleft") %>%
-        addPolygons(data = corn_mon_NDVI, color = "#cb9c10", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon") %>%
-        addPolygons(data = corn_val_NDVI, color = "#9c780d", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_val") %>%
-        addPolygons(data = potato_mon_NDVI, color = "#974b0c", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon") %>%
-        addPolygons(data = potato_val_NDVI, color = "#552a07", weight = 1, smoothFactor = 0.5,
-                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_val")
+        addPolygons(data = corn_mon_NDRE, color = "#cb9c10", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_mon",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Corn monitoring")%>% lapply(htmltools::HTML)) %>%
+        addPolygons(data = corn_val_NDRE, color = "#9c780d", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Corn_val",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Corn validation")%>% lapply(htmltools::HTML)) %>%
+        addPolygons(data = potato_mon_NDRE, color = "#974b0c", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_mon",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Potato monitoring")%>% lapply(htmltools::HTML)) %>%
+        addPolygons(data = potato_val_NDRE, color = "#552a07", weight = 1, smoothFactor = 0.5,
+                    opacity = 1.0, fillOpacity = 0.5, group = "Potato_val",
+                    highlightOptions = highlightOptions(color = "white", weight = 2, bringToFront = TRUE),
+                    label = sprintf(fmt = "<strong>%s</strong>", "Potato validation")%>% lapply(htmltools::HTML))
     }
       
   })

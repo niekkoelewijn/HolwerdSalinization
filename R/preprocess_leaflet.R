@@ -53,12 +53,3 @@ potato_val_NDRE <- st_as_sf(potato_val_NDRE)
 potato_val_NDRE <- sf::st_transform(potato_val_NDRE, 4326)
 potato_val_NDRE <- st_zm(potato_val_NDRE, drop = T, what = "ZM")
 
-#create leaflet of NDVI
-#pal <-  colorBin(palette = "RdYlGn", domain = corn_mon_NDVI)
-
-
-
-
-
-
-
