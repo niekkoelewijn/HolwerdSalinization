@@ -8,10 +8,10 @@
 #create leaflet maps
 
 ## Data preparation for NDVI leaflet map
-corn_mon_NDVI <- Corn_plots_NDVI[1:4,(1+3)]
-corn_val_NDVI <- Corn_plots_NDVI[5:8,(1+3)]
-potato_mon_NDVI <- Potato_plots_NDVI[1:4,(1+3)]
-potato_val_NDVI <- Potato_plots_NDVI[5:8,(1+3)]
+corn_mon_NDVI <- Corn_plots_NDVI[1:4,4]
+corn_val_NDVI <- Corn_plots_NDVI[5:8,4]
+potato_mon_NDVI <- Potato_plots_NDVI[1:4,4]
+potato_val_NDVI <- Potato_plots_NDVI[5:8,4]
 
 # Transform to correct EPSG and drop z dimension
 corn_mon_NDVI <- st_as_sf(corn_mon_NDVI)
