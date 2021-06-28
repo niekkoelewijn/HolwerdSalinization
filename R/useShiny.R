@@ -55,7 +55,7 @@ ui <- fluidPage(br(),
                                          (
                                            "The data that was used for creating this salinization application includes freely available Sentinal-2 data. Specific bands that were used include bands 2, 3 and 4 (Blue, Green and Red at 10m resolution), band 5 (Red Edge at 20m resolution) and band 8 (NIR) at 10m resolution). Copy the link below to find the used GEE script for extracting the data in the HolwerdSalinization folder"),
                                          a(
-                                           "https://code.earthengine.google.com/?accept_repo=users/niekkoelewijn/geoscripting"),
+                                           "https://code.earthengine.google.com/a837f3e8674dfdeeeac2e5fcf28bdf21"),
                                          br(), h3('Methodology'),
                                          (
                                            "This application was made through the use of the R Shiny package, which enables the user to create web apps. The following steps were conducted to process the data:"), br(), br(),
