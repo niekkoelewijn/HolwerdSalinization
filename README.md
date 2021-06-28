@@ -15,6 +15,6 @@ In Holwerd, there is a plan to reconnect the village to the sea by means of brea
 Via Google Earth Engine, sentinel images of 16 dates in 2019 of the study area are downloaded and uploaded in the data folder. The script can be find in the GEEJaveScript folder and via https://code.earthengine.google.com/a837f3e8674dfdeeeac2e5fcf28bdf21. With Google MyMaps, we have created the monitoring and validation plots for the different crops. We have downloaded those polygons and uploaded them into the data folder. The data is processed and analysed via the scripts in the R folder. If the user runs the script main.R, the complete analysis runs automatically. A R Shiny app launches when the script is done running. The first tab of the app contains a description of how the app could be used.
 
 ## Implement analysis on other study area / location
-If one wants to perform this salinization assessment on an other study location, one can easily adapt the code of the Google Earth Engine script (  https://code.earthengine.google.com/a837f3e8674dfdeeeac2e5fcf28bdf21) and create new plots in Google MyMaps for the crop monitoring. 
+If one wants to perform this salinization assessment on an other study location, one can easily adapt the code of the Google Earth Engine script ( https://code.earthengine.google.com/a837f3e8674dfdeeeac2e5fcf28bdf21) and create new plots in Google MyMaps for the crop monitoring. 
 
 
