@@ -60,7 +60,7 @@ ui <- fluidPage(br(),
                                          (
                                            "This application was made through the use of the R Shiny package, which enables the user to create web apps. The following steps were conducted to process the data:"), br(), br(),
                                          (
-                                           "1.	Draw study area and agricultural plots (monitor and validation) in Google Earth Engine"), br(),
+                                           "1.	Draw study area in Google Earth Engine and agricultural plots (monitor and validation) in Google My Maps"), br(),
                                          (
                                            "2.	Load polygons into R script and download Sentinal-2 data clipped to study area"), br(),
                                          (
